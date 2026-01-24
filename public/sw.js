@@ -7,7 +7,6 @@ const CACHE_NAME = "";
 const CACHE_FILES = [];
 
 self.addEventListener("install", async (e) => {
-    console.log("SW: install");
     e.waitUntil(
         (async () => {
             const cache = await caches.open(CACHE_NAME);
@@ -17,7 +16,6 @@ self.addEventListener("install", async (e) => {
 });
 
 self.addEventListener("activate", async (e) => {
-    console.log("SW: activate");
     e.waitUntil(
         (async () => {
             for (const key of await caches.keys()) {
@@ -32,11 +30,9 @@ self.addEventListener("activate", async (e) => {
 });
 
 self.addEventListener("fetch", async (e) => {
-    console.log("SW: fetch");
     e.respondWith(
         (async () => {
             const cached = await caches.match(e.request);
-            console.log("SW: fetch:", cached);
             if (cached) {
                 return cached;
             }

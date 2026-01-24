@@ -8,10 +8,12 @@ const CACHE_FILES = [];
 
 self.addEventListener("install", async (e) => {
     console.log("SW: install");
-    e.waitUntil(async () => {
-        const cache = await caches.open(CACHE_NAME);
-        await cache.addAll(CACHE_FILES);
-    });
+    e.waitUntil(
+        (async () => {
+            const cache = await caches.open(CACHE_NAME);
+            await cache.addAll(CACHE_FILES);
+        })(),
+    );
 });
 
 self.addEventListener("fetch", async (e) => {

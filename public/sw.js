@@ -17,17 +17,12 @@ self.addEventListener("install", async (e) => {
 self.addEventListener("fetch", async (e) => {
     console.log("SW: fetch");
     e.respondWith(async () => {
-        const cacheResponse = await caches.match(e.request);
-        console.log("SW: cacheResponse:", cacheResponse);
-        if (cacheResponse) {
-            return cacheResponse;
+        const cached = await caches.match(e.request);
+        console.log("SW: fetch:", cached);
+        if (cached) {
+            return cached;
         }
 
-        const fetchResponse = await fetch(e.request);
-        const cache = await caches.open(CACHE_NAME);
-        cache.put(e.request, fetchResponse.clone());
-        console.log("SW: fetchResponse:", fetchResponse);
-
-        return fetchResponse;
+        return await fetch(e.request);
     });
 });

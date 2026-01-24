@@ -10,12 +10,12 @@ self.addEventListener("install", async (e) => {
     console.log("SW: install");
     e.waitUntil(async () => {
         const cache = await caches.open(CACHE_NAME);
-        caches.addAll(CACHE_FILES);
+        await cache.addAll(CACHE_FILES);
     });
 });
 
 self.addEventListener("fetch", async (e) => {
-    console.log("SW: install");
+    console.log("SW: fetch");
     e.respondWith(async () => {
         const cacheResponse = await caches.match(e.request);
         console.log("SW: cacheResponse:", cacheResponse);

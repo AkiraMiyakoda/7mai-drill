@@ -63,6 +63,11 @@
     onMount(() => {
         moveNext();
     });
+
+    // サービスワーカーの登録
+    if ("serviceWorker" in navigator) {
+        navigator.serviceWorker.register("sw.js", { scope: "/" });
+    }
 </script>
 
 <main>

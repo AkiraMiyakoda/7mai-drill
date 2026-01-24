@@ -4,15 +4,16 @@
 // https://opensource.org/licenses/MIT
 
 import fs from "fs";
+import crypto from "crypto";
 
 // サービスワーカーにキャッシュバージョンとファイル名を書き込む
-const CACHE_NAME = `${Date.now()}`;
 const CACHE_FILES = ["/"].concat(
     fs
         .globSync("dist/**/*")
         .filter((f) => f !== "dist/sw.js" && fs.lstatSync(f).isFile())
         .map((f) => f.replace(/^dist\//, "/")),
 );
+const CACHE_NAME = crypto.createHash("md5").update(Buffer.from(CACHE_FILES)).digest("base64url");
 
 console.log(`Modifying sw.js...`);
 console.log(`CACHE_NAME = "${CACHE_NAME}"`);

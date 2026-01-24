@@ -66,52 +66,84 @@
 </script>
 
 <main>
-    <div class="title-row">麻雀 7枚形ドリル</div>
-    <div class="text-row">この形の</div>
-    <div class="tile-row">
-        {#each question as index}
-            <Tile active={true} {color} {index} />
-        {/each}
+    <div class="main-box">
+        <div class="title-row">麻雀 7枚形ドリル</div>
+        <div class="text-row">この形の</div>
+        <div class="tile-row">
+            {#each question as index}
+                <Tile active={true} {color} {index} />
+            {/each}
+        </div>
+        <div class="text-row">待ちは何？</div>
+        <div class="tile-row">
+            {#each Array(TILE_COUNT) as _, index}
+                <Tile active={userAnswer[index]} {color} {index} onclick={() => toggleUserAnswer(index)} />
+            {/each}
+        </div>
+        <div class="text-row">正解</div>
+        <div class="tile-row">
+            {#each Array(TILE_COUNT) as _, index}
+                <Tile active={showAnswer && correctAnswer[index]} {color} {index} />
+            {/each}
+        </div>
+        <div class="button-row">
+            <button onclick={toggleShowAnswer}>
+                正解を{showAnswer ? "隠す" : "見る"}
+            </button>
+            <button onclick={moveNext}>次の問題へ</button>
+        </div>
     </div>
-    <div class="text-row">待ちは何？</div>
-    <div class="tile-row">
-        {#each Array(TILE_COUNT) as _, index}
-            <Tile active={userAnswer[index]} {color} {index} onclick={() => toggleUserAnswer(index)} />
-        {/each}
-    </div>
-    <div class="text-row">正解</div>
-    <div class="tile-row">
-        {#each Array(TILE_COUNT) as _, index}
-            <Tile active={showAnswer && correctAnswer[index]} {color} {index} />
-        {/each}
-    </div>
-    <div class="button-row">
-        <button onclick={toggleShowAnswer}>
-            正解を{showAnswer ? "隠す" : "見る"}
-        </button>
-        <button onclick={moveNext}>次の問題へ</button>
+    <div class="credit-box">
+        <div class="credit-row">
+            <a href="https://github.com/AkiraMiyakoda/7mai-drill" title="Github repository" target="_blank">
+                <div class="github-icon"></div>
+            </a>
+        </div>
     </div>
 </main>
 
 <style lang="scss">
-    $tile-size: min(calc(100vw / 8), 80px);
+    $tile-size: min(calc(100vw / 8), 100px);
+
+    .main-box {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100vw;
+        padding-top: 8vh;
+    }
 
     .title-row {
         font-size: 1.6rem;
         font-weight: bold;
-        padding-bottom: 20px;
     }
 
     .text-row {
         font-size: 1.2rem;
-        padding-top: 25px;
+        padding-top: 3vh;
     }
 
     .tile-row {
-        padding-top: 15px;
+        padding-top: 3vh;
     }
 
     .button-row {
-        padding-top: 45px;
+        padding-top: 5vh;
+    }
+
+    .credit-box {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100vw;
+        padding-bottom: 5vh;
+    }
+
+    .github-icon {
+        display: inline-block;
+        width: 40px;
+        height: 40px;
+        background-image: url("./assets/github.svg");
+        background-size: contain;
     }
 </style>

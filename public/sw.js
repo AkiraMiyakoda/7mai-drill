@@ -16,6 +16,21 @@ self.addEventListener("install", async (e) => {
     );
 });
 
+self.addEventListener("activate", async (e) => {
+    console.log("SW: activate");
+    e.waitUntil(
+        (async () => {
+            for (const key of await caches.keys()) {
+                if (key === CACHE_NAME) {
+                    continue;
+                }
+
+                await caches.delete(key);
+            }
+        })(),
+    );
+});
+
 self.addEventListener("fetch", async (e) => {
     console.log("SW: fetch");
     e.respondWith(

@@ -1,0 +1,15 @@
+{
+    "id": "/",
+    "name": "7枚形ドリル",
+    "short_name": "7枚形ドリル",
+    "theme_color": "#cad2c5",
+    "background_color": "#cad2c5",
+    "display": "standalone",
+    "orientation": "portrait",
+    "scope": "/",
+    "start_url": "/",
+    "icons": [
+        { "src": "/7mai-32.png", "sizes": "32x32", "type": "image/png" },
+        { "src": "/7mai-256.png", "sizes": "256x256", "type": "image/png" }
+    ]
+}

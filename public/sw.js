@@ -16,13 +16,15 @@ self.addEventListener("install", async (e) => {
 
 self.addEventListener("fetch", async (e) => {
     console.log("SW: fetch");
-    e.respondWith(async () => {
-        const cached = await caches.match(e.request);
-        console.log("SW: fetch:", cached);
-        if (cached) {
-            return cached;
-        }
+    e.respondWith(
+        (async () => {
+            const cached = await caches.match(e.request);
+            console.log("SW: fetch:", cached);
+            if (cached) {
+                return cached;
+            }
 
-        return await fetch(e.request);
-    });
+            return await fetch(e.request);
+        })(),
+    );
 });

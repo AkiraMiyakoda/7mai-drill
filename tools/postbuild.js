@@ -3,8 +3,8 @@
 // This software is released under the MIT License.
 // https://opensource.org/licenses/MIT
 
-import fs from "fs";
 import crypto from "crypto";
+import fs from "fs";
 
 // サービスワーカーにキャッシュバージョンとファイル名を書き込む
 const CACHE_FILES = ["/"].concat(

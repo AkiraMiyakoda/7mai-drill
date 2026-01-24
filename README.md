@@ -33,4 +33,5 @@
 
 ## 素材引用元
 
+麻雀牌アイコンは[こちら](https://github.com/FluffyStuff/riichi-mahjong-tiles)のものを使用しています
 麻雀牌フォントは[こちら](https://github.com/rutopio/Japanese-Mahjong-Font-with-OpenType)のものを使用しています

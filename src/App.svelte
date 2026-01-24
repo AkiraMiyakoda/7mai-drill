@@ -11,6 +11,7 @@
     import Tile, { COLOR_COUNT, TILE_COUNT } from "./lib/Tile.svelte";
     import { shuffle } from "./lib/Utils.svelte";
 
+    const BUILD_TIME = import.meta.env.VITE_BUILD_TIME ?? "Dev mode";
     const MIN_TILE = 1; // 数牌の最小値
     const MAX_TILE = 9; // 数牌の最大値
 
@@ -104,6 +105,9 @@
                 <div class="github-icon"></div>
             </a>
         </div>
+        <div class="credit-row">
+            <span>Build: {BUILD_TIME}</span>
+        </div>
     </div>
 </main>
 
@@ -141,6 +145,7 @@
         left: 0;
         bottom: 0;
         width: 100vw;
+        font-size: 0.8rem;
         padding-bottom: 5vh;
     }
 

@@ -10,7 +10,8 @@ import fs from "fs";
 const CACHE_FILES = ["/"].concat(
     fs
         .globSync("dist/**/*")
-        .filter((f) => f !== "dist/sw.js" && fs.lstatSync(f).isFile())
+        .filter((file) => !["dist/sw.js", "dist/_headers", "dist/_worker.js"].some((e) => file === e))
+        .filter((file) => fs.lstatSync(file).isFile())
         .map((f) => f.replace(/^dist\//, "/")),
 );
 const CACHE_NAME = crypto.createHash("md5").update(Buffer.from(CACHE_FILES)).digest("base64url");

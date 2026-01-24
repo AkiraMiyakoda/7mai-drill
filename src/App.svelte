@@ -6,12 +6,14 @@
 -->
 
 <script lang="ts">
+    import dayjs from "dayjs";
     import { onMount } from "svelte";
     import { getAnswer, getQuestion, HAND_SIZE, QUESTION_COUNT } from "./lib/Questions.svelte";
     import Tile, { COLOR_COUNT, TILE_COUNT } from "./lib/Tile.svelte";
     import { shuffle } from "./lib/Utils.svelte";
 
-    const BUILD_TIME = import.meta.env.VITE_BUILD_TIME ?? "Dev mode";
+    const BUILD_TIME = dayjs(__APP_TIMESTAMP__).format() + (import.meta.env.MODE === "development" ? " (DEV)" : "");
+
     const MIN_TILE = 1; // 数牌の最小値
     const MAX_TILE = 9; // 数牌の最大値
 
@@ -147,6 +149,10 @@
         width: 100vw;
         font-size: 0.8rem;
         padding-bottom: 5vh;
+    }
+
+    .credit-row {
+        padding-top: 8px;
     }
 
     .github-icon {

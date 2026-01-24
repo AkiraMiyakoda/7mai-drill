@@ -26,7 +26,10 @@ self.addEventListener("fetch", async (e) => {
                 return cached;
             }
 
-            return await fetch(e.request);
+            const fetched = await fetch(e.request);
+            const cache = await caches.open(CACHE_NAME);
+            await cache.put(e.request, fetched.clone());
+            return fetched;
         })(),
     );
 });

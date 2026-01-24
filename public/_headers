@@ -1,0 +1,5 @@
+/*
+    Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; frame-ancestors 'none'; form-action 'none';
+    X-Content-Type-Options: nosniff
+    X-Frame-Options: DENY
+    X-Robots-Tag: noindex, nofollow, nosnippet

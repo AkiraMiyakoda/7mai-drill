@@ -10,8 +10,8 @@ const CACHE_NAME = `${Date.now()}`;
 const CACHE_FILES = ["/"].concat(
     fs
         .globSync("dist/**/*")
-        .map((f) => f.replace(/^dist\//, "/"))
-        .filter((f) => f !== "sw.js"),
+        .filter((f) => f !== "/dist/sw.js" && fs.lstatSync(f).isFile())
+        .map((f) => f.replace(/^dist\//, "/")),
 );
 
 console.log(`Modifying sw.js...`);

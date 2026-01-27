@@ -3,10 +3,10 @@
 // This software is released under the MIT License.
 // https://opensource.org/licenses/MIT
 
-import crypto from "crypto";
 import fs from "fs";
 
 // サービスワーカーにキャッシュバージョンとファイル名を書き込む
+const CACHE_NAME = `${Date.now()}`;
 const CACHE_FILES = (() => {
     const files = ["/"].concat(
         fs
@@ -17,7 +17,6 @@ const CACHE_FILES = (() => {
     );
     return JSON.stringify(files, null, "    ");
 })();
-const CACHE_NAME = crypto.createHash("md5").update(Buffer.from(CACHE_FILES)).digest("base64url");
 
 console.log(`Modifying sw.js...`);
 console.log(`CACHE_NAME = "${CACHE_NAME}"`);
